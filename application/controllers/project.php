@@ -11,6 +11,12 @@ class Project extends CI_Controller{
             redirect('web');
         }
     }
+	
+	public function ajax_delete($id)
+	{
+		$this->m_project->hapus($id);
+		echo json_encode(array("status" => TRUE));
+	}
 
     public function project_page()
      {
@@ -29,6 +35,8 @@ class Project extends CI_Controller{
 			$row[] = $r->no_doc_project;
             $row[] = $r->deskripsi_project;
             $row[] = $r->tgl_input;
+			$row[] = '<a class="btn btn-sm btn-primary" href="project/edit/'."".$r->id_main_project."".'"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_project('."'".$r->id_main_project."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
            
            
  
@@ -121,7 +129,30 @@ class Project extends CI_Controller{
         }
     }
     
-    
+    function edit($id){
+        $data['title']="Edit data Main Project";
+		
+		
+        $this->_set_rules();
+        if($this->form_validation->run()==true){
+            $kode=$this->input->post('id_main_project');
+
+            $info=array(
+					'no_doc_project'=>$this->input->post('no_doc_project'),
+                    'deskripsi_project'=>$this->input->post('deskripsi_project'),
+                );
+				
+            $this->m_project->update($kode,$info);
+            
+            $data['project']=$this->m_project->cek($id)->row_array();
+            $data['message']="<div class='alert alert-success'>Data berhasil diupdate</div>";
+            $this->template->display('project/edit',$data);
+        }else{
+            $data['message']="";
+            $data['project']=$this->m_project->cek($id)->row_array();
+            $this->template->display('project/edit',$data);
+        }
+    }
     
     function _set_rules(){
        

@@ -29,13 +29,10 @@
 <?php echo $message;?>
 <table id="table" class="table table-bordered table-striped table-hover">
      <thead>
-     <tr><td>NO</td><td>Tgl Input</td><td>Id Main Project</td><td>No Dokumen Project</td><td>Deskripsi</td></tr>
+     <tr><td>NO</td><td>Tgl Input</td><td>Id Main Project</td><td>No Dokumen Project</td><td>Deskripsi</td><td>Action</td></tr>
      </thead>
      <tbody>
      </tbody>
-	 <tfoot>
-     <tr><td>NO</td><td>Tgl Input</td><td>Id Main Project</td><td>No Dokumen Project</td><td>Deskripsi</td></tr>
-     </tfoot>
 </table>
 </div>
 </div>
@@ -105,5 +102,31 @@ $(document).ready(function() {
     });
 
 });
+
+
+function delete_project(id)
+{
+    if(confirm('Are you sure delete this data?'))
+    {
+        // ajax delete data to database
+        $.ajax({
+            url : "<?php echo site_url('project/ajax_delete')?>/"+id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data)
+            {
+                //if success reload ajax table
+                //$('#modal_form').modal('hide');
+                //reload_table();
+				window.location.href = "<?php echo site_url('project/index')?>";
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error deleting data');
+            }
+        });
+
+    }
+}
 </script>
 

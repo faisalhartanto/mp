@@ -141,6 +141,7 @@ class So extends CI_Controller{
 					'bulan'=>$this->input->post('bulan'),
 					'no_po_kesepakatan'=>$this->input->post('no_po_kesepakatan'),
 					'status_job'=>$this->input->post('status_job'),
+					'tgl_belumdikerjakan'=>$this->input->post('tgl_input'),
 					'rutin'=>$this->input->post('rutin'),
 					'telkomsel'=>$this->input->post('telkomsel'),
 					'po_nonpo'=>$this->input->post('po_nonpo'),
@@ -158,7 +159,7 @@ class So extends CI_Controller{
     
 	
 	function edit($id){
-        $data['title']="Edit data Combat";
+        $data['title']="Edit data SO";
 		$data['mainproject']=$this->m_so->semua_mainproject()->result();
 		
         $this->_set_rules();
@@ -188,6 +189,44 @@ class So extends CI_Controller{
             $this->template->display('so/edit',$data);
         }
     }
+	
+	function editstatus($id){
+        $data['title']="Edit data Combat";
+		$data['mainproject']=$this->m_so->semua_mainproject()->result();
+		
+        $this->_set_rules_status();
+        if($this->form_validation->run()==true){
+            $kode=$this->input->post('id_so');
+			$status_job=$this->input->post('status_job');
+			
+			if ($status_job == "On Progress"){
+				$info=array(
+					'status_job'=>$this->input->post('status_job'),
+					'tgl_ongoing'=>$this->input->post('tgl_update'),
+                );
+			} else if ($status_job == "bast"){
+				$info=array(
+					'status_job'=>$this->input->post('status_job'),
+					'tgl_bast'=>$this->input->post('tgl_update'),
+                );
+			} else if ($status_job == "closed"){
+				$info=array(
+					'status_job'=>$this->input->post('status_job'),
+					'tgl_closed'=>$this->input->post('tgl_update'),
+                );
+            }
+				
+            $this->m_so->update($kode,$info);
+            
+            $data['so']=$this->m_so->cek($id)->row_array();
+            $data['message']="<div class='alert alert-success'>Data berhasil diupdate</div>";
+            $this->template->display('so/editstatus',$data);
+        }else{
+            $data['message']="";
+            $data['so']=$this->m_so->cek($id)->row_array();
+            $this->template->display('so/editstatus',$data);
+        }
+    }
     
     
     function _set_rules(){
@@ -195,6 +234,12 @@ class So extends CI_Controller{
         $this->form_validation->set_rules('deskripsi','Deskripsi ','required|max_length[100]');
         $this->form_validation->set_rules('tgl_input','Tanggal Input','required|max_length[25]');
 		$this->form_validation->set_rules('bulan','Tanggal SO','required|max_length[25]');
+        $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
+    }
+	
+	function _set_rules_status(){
+        
+        $this->form_validation->set_rules('tgl_update','Tanggal Update','required|max_length[25]');
         $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
     }
 }

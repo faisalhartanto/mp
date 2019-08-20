@@ -161,7 +161,7 @@ $("#id_main_project").click(function(){
  
     <div class="form-group well">
         <button class="btn btn-primary"><i class="glyphicon glyphicon-hdd"></i> Simpan</button>
-        <a href="<?php echo site_url('project');?>" class="btn btn-default">Kembali</a>
+        <a href="<?php echo site_url('so');?>" class="btn btn-default">Kembali</a>
     </div>
 	<!--<script src="<?php echo base_url('assets/jquery-1.7.2.min.js')?>"</script>-->
 </form>
