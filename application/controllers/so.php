@@ -82,6 +82,27 @@ class So extends CI_Controller{
 		$this->m_so->hapus($id);
 		echo json_encode(array("status" => TRUE));
 	}
+	
+	function approveso() {
+    $dat = $this->input->post('forms');
+    for ($i = 0; $i < sizeof($dat); $i++) {
+        //print_r($dat[$i]);
+		$rdata = $this->m_so->ambildata($dat[$i])->result(); 
+		foreach ($rdata as $row){
+			$id_so = $row->id_so;
+			$flag = '2';
+		}		
+		    $infoflag=array(
+					'FLAG'=>$flag
+					); 			
+		
+		
+        
+		$this->m_so->updateflag($id_so,$infoflag);
+		
+    }
+    redirect('brg2/index_approve', 'refresh');
+}
 
     function index($offset=0,$order_column='id_so',$order_type='asc'){
         if(empty($offset)) $offset=0;
@@ -249,6 +270,39 @@ class So extends CI_Controller{
             $data['so']=$this->m_so->cek($id)->row_array();
             $this->template->display('so/editstatus',$data);
         }
+    }
+	
+	function index_approve($offset=0,$order_column='id_so',$order_type='asc'){
+        if(empty($offset)) $offset=0;
+        if(empty($order_column)) $order_column='id_so';
+        if(empty($order_type)) $order_type='asc';
+        
+        //load data
+		$level = $this->session->userdata('level');
+		$uname = $this->session->userdata('username');
+        $data['so']=$this->m_so->approveso($this->limit,$offset,$order_column,$order_type)->result();
+        $data['title']="Data SO Belum Approve";
+        
+        $config['base_url']=site_url('so/index_approve/');
+        $config['total_rows']=$this->m_so->jumlah();
+        $config['per_page']=10;
+        $config['uri_segment']=3;
+        $this->pagination->initialize($config);
+        $data['pagination']=$this->pagination->create_links();
+        
+        
+        if($this->uri->segment(3)=="delete_success")
+            $data['message']="<div class='alert alert-success'>Data berhasil dihapus</div>";
+        else if($this->uri->segment(3)=="add_success")
+            $data['message']="<div class='alert alert-success'>Data Berhasil disimpan</div>";
+        else
+            $data['message']='';
+			if ($level == 2 ){
+            $this->template3->display('so/index_approve',$data);
+			}
+			else {
+			 $this->template3->display('so/index_approve2',$data);	
+			}
     }
     
     

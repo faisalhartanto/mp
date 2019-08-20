@@ -1,6 +1,6 @@
 <?php
 
-class Dashdir extends CI_Controller
+class Dashgm extends CI_Controller
 {
 
     function __construct()
@@ -8,7 +8,7 @@ class Dashdir extends CI_Controller
         parent::__construct();
         $this->load->model(array('m_petugas', 'm_grafikchart'));
         $this->load->library(array('form_validation', 'template4', 'template3', 'template'));
-        $this->load->helper(array('masalalu_helper'));
+        //$this->load->helper(array('masalalu_helper'));
 
         if (!$this->session->userdata('level')) {
             redirect('web');

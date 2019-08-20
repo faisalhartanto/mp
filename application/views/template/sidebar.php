@@ -9,6 +9,7 @@
                     <ul aria-expanded="false" class="collapse">
 						<li><a href="<?php echo site_url('project');?>"> Main Project </a></li> 
                         <li><a href="<?php echo site_url('so');?>"> Project (SO) </a></li>
+						<li><a href="<?php echo site_url('so/index_approve');?>"> Project (SO) Belum Approve </a></li>
                     </ul>
                 </li>
             </ul>

@@ -4,7 +4,7 @@ class Project extends CI_Controller{
     
     function __construct(){
         parent::__construct();
-        $this->load->library(array('template','form_validation','pagination','upload'));
+        $this->load->library(array('template','template3','template4','form_validation','pagination','upload'));
         $this->load->model(array('m_project'));
         
         if(!$this->session->userdata('level')){

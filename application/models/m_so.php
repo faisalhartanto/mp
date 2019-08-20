@@ -34,6 +34,7 @@ private function _get_datatables_query()
 		
 
 		$this->db->from($this->table);
+		$this->db->where ('flag', '2');
 
 		$i = 0;
 	
@@ -77,6 +78,20 @@ private function _get_datatables_query()
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	function ambildata($id_so){
+			$this->db->where('id_so',$id_so);
+			return $this->db->get($this->table);
+    }
+	
+	
+	function approveso($limit=10,$offset=0,$order_column='',$order_type='asc'){
+        if(empty($order_column) || empty($order_type))
+            $this->db->order_by($this->primary,'asc');
+        else
+            
+		return $this->db->query("select * from so where flag='1' ");
+    }
 
 	function count_filtered()
 	{
@@ -107,6 +122,8 @@ private function _get_datatables_query()
         
         return $query;
     }
+	
+	
 	
 	
     function jumlah(){
@@ -179,6 +196,11 @@ private function _get_datatables_query()
 	function cariNodoc($id_main_project){
         $this->db->where("id_main_project",$id_main_project);
         return $this->db->get("project");
+    }
+	
+	function updateflag($kode,$jenis){
+        $this->db->where($this->primary,$kode);
+        $this->db->update($this->table,$jenis);
     }
 	
 }
