@@ -191,7 +191,7 @@ class So extends CI_Controller{
     }
 	
 	function editstatus($id){
-        $data['title']="Edit data Combat";
+        $data['title']="Edit data Status";
 		$data['mainproject']=$this->m_so->semua_mainproject()->result();
 		
         $this->_set_rules_status();

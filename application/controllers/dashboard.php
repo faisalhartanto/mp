@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller{
         $this->load->model('m_petugas');
         $this->load->library(array('form_validation','template'));
         
-        if(!$this->session->userdata('username')){
+        if(!$this->session->userdata('level')){
             redirect('web');
         }
     }

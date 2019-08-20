@@ -41,6 +41,7 @@ class Web extends CI_Controller{
     
     function proses(){
         $this->load->library('form_validation');
+		$this->load->library('session');
         $this->form_validation->set_rules('username','Username','required|trim|xss_clean');
         $this->form_validation->set_rules('password','password','required|trim|xss_clean');
         
@@ -52,9 +53,30 @@ class Web extends CI_Controller{
             $password=$this->input->post('password');
             $cek=$this->m_petugas->cek($username,md5($password));
             if($cek->num_rows()>0){
+				foreach ($cek->result() as $sess) {
+                    $sess_data['logged_in'] = 'Sudah Loggin';
+                    $sess_data['user'] = $sess->user;
+                    $sess_data['level'] = intval($sess->level);
+                    // Update by Imam 10 Mei 2019
+                    
+                    // End of Update
+					//$this->session->set_userdata('username',$username);
+                    $this->session->set_userdata($sess_data);
+                    //------------------------tract login------------------
+                   
+                }
                 //login berhasil, buat session
-                $this->session->set_userdata('username',$username);
-                redirect('dashboard');
+               
+                if ($this->session->userdata('level') == 1) {
+                    redirect('dashboard');
+                }
+                if ($this->session->userdata('level') == 2) {
+                    redirect('dashmgr');
+                }
+                if ($this->session->userdata('level') == 3) {
+                    redirect('dashgm');
+                }
+                
                 
             }else{
                 //login gagal
