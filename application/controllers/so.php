@@ -4,26 +4,26 @@ class So extends CI_Controller{
     
     function __construct(){
         parent::__construct();
-        $this->load->library(array('template','form_validation','pagination','upload'));
+        $this->load->library(array('template','template3','template4','form_validation','pagination','upload'));
         $this->load->model(array('m_so'));
         
-        if(!$this->session->userdata('username')){
+        if(!$this->session->userdata('level')){
             redirect('web');
         }
     }
 
     public function so_page()
      {
+		 
+		$level= $this->session->userdata('level'); 
         $list = $this->m_so->get_datatables();
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $r) {
            
+			if ($level == 1){
 			$no++;
 			$row = array();
-			
-			
-			
             $row[] = $no;
             $row[] = $r->tgl_input;
             $row[] = $r->id_so;
@@ -44,7 +44,21 @@ class So extends CI_Controller{
                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_so('."'".$r->id_so."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>
 				  <a class="btn btn-sm btn-primary" href="so/editstatus/'."".$r->id_so."".'"><i class="glyphicon glyphicon-pencil"></i>Update Status</a>';
             
- 
+			}
+			else {
+			$no++;
+			$row = array();
+            $row[] = $no;
+            $row[] = $r->tgl_input;
+            $row[] = $r->id_so;
+            $row[] = $r->id_main_project;
+            $row[] = $r->no_doc_project;
+			$row[] = $r->deskripsi;
+			$row[] = $r->nilai_project;
+			$row[] = $r->bulan;
+			$row[] = $r->no_po_kesepakatan;
+			$row[] = $r->status_job;	
+			}
             $data[] = $row;
         }
  
@@ -75,6 +89,7 @@ class So extends CI_Controller{
         if(empty($order_type)) $order_type='asc';
         
         //load data
+		$level= $this->session->userdata('level'); 
         $data['so']=$this->m_so->semua($this->limit,$offset,$order_column,$order_type)->result();
         $data['title']="Data soalasi";
         
@@ -92,7 +107,15 @@ class So extends CI_Controller{
             $data['message']="<div class='alert alert-success'>Data Berhasil disimpan</div>";
         else
             $data['message']='';
+			if ($level == 1){
             $this->template->display('so/index',$data);
+			}
+			else if  ($level == 2){
+			$this->template3->display('so/index2',$data);	
+			}
+			else {
+			$this->template4->display('so/index2',$data);	
+			}
     }
     
 	function cariDetailproject(){

@@ -38,7 +38,7 @@
 
 				<table id="table" class="table table-bordered table-striped table-hover">
 					 <thead>
-					 <tr><td>NO</td><td>Tgl Input</td><td>Id SO</td><td>Id Project</td><td>No Doc Project</td><td>Deskripsi</td><td>Nilai Project</td><td>Tanggal SO</td><td>No PO Kesepakatan</td><td>Status Job</td><!--<td>Rutin</td><td>Telkomsel</td><td>PO atau Non PO</td><td>Status PO</td>--><td width ="400">action</td></tr>
+					 <tr><td>NO</td><td>Tgl Input</td><td>Id SO</td><td>Id Project</td><td>No Doc Project</td><td>Deskripsi</td><td>Nilai Project</td><td>Tanggal SO</td><td>No PO Kesepakatan</td><td>Status Job</td><!--<td>Rutin</td><td>Telkomsel</td><td>PO atau Non PO</td><td>Status PO</td>--></tr>
 					 </thead>
 					 <tbody>
 					 </tbody>

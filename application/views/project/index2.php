@@ -3,11 +3,11 @@
 <section class="content">
     <div class="box">
         <div class="box-body">
-			<div class="panel panel-default">
-				<div class="panel-body">
-				<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" id="form-filter">
-                <?php echo validation_errors(); ?>
-                <div class="form-horizontal">
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" id="form-filter">
+                    <?php echo validation_errors(); ?>
+                    <div class="form-horizontal">
                     
                     
                     <div class="form-group">
@@ -21,41 +21,26 @@
                     
                     
                 </div>  
-				</form>
-				</div>
-			</div>
-<a href="<?php echo site_url('so/tambah');?>" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
+    </form>
+</div>
+</div>
+<a href="<?php echo site_url('project/tambah');?>" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
 <hr>
-
-<div class="row">
-    <div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-                <!--<a href="<?php echo site_url('combat/tambah');?>" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> Tambah</a>-->
-
-                <?php echo $message;?>
-                <div class="table-responsive">
-
-				<table id="table" class="table table-bordered table-striped table-hover">
-					 <thead>
-					 <tr><td>NO</td><td>Tgl Input</td><td>Id SO</td><td>Id Project</td><td>No Doc Project</td><td>Deskripsi</td><td>Nilai Project</td><td>Tanggal SO</td><td>No PO Kesepakatan</td><td>Status Job</td><!--<td>Rutin</td><td>Telkomsel</td><td>PO atau Non PO</td><td>Status PO</td>--><td width ="400">action</td></tr>
-					 </thead>
-					 <tbody>
-					 </tbody>
-					 
-					 
-				</table>
-				</div>			
-				</div>
-			</div>			
-	</div>
+<?php echo $message;?>
+<table id="table" class="table table-bordered table-striped table-hover">
+     <thead>
+     <tr><td>NO</td><td>Tgl Input</td><td>Id Main Project</td><td>No Dokumen Project</td><td>Deskripsi</td></tr>
+     </thead>
+     <tbody>
+     </tbody>
+</table>
 </div>
-
 </div>
-<section>
+</section>
+
 
 <!--<script src="<?php echo base_url('assets/jquery/jquery-2.2.3.min.js')?>"></script>-->
-<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>   
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>      
 <script>
     $(function(){
         $(".hapus").click(function(){
@@ -69,12 +54,12 @@
             var kode=$("#idhapus").val();
             
             $.ajax({
-                url:"<?php echo site_url('so/hapus');?>",
+                url:"<?php echo site_url('inst/hapus');?>",
                 type:"POST",
                 data:"kode="+kode,
                 cache:false,
                 success:function(html){
-                    location.href="<?php echo site_url('so/index/delete_success');?>";
+                    location.href="<?php echo site_url('inst/index/delete_success');?>";
                 }
             });
         });
@@ -94,7 +79,7 @@ $(document).ready(function() {
 
 
        "ajax": {
-            "url": "<?php echo site_url('so/so_page')?>",
+            "url": "<?php echo site_url('project/project_page')?>",
             "type": "POST",
             "data": function ( data ) {
                 data.combat = $('#combat').val();
@@ -124,15 +109,13 @@ $(document).ready(function() {
 });
 
 
-  
-
-function delete_so(id)
+function delete_project(id)
 {
     if(confirm('Are you sure delete this data?'))
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo site_url('so/ajax_delete')?>/"+id,
+            url : "<?php echo site_url('project/ajax_delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
@@ -140,7 +123,7 @@ function delete_so(id)
                 //if success reload ajax table
                 //$('#modal_form').modal('hide');
                 //reload_table();
-				window.location.href = "<?php echo site_url('so/index')?>";
+				window.location.href = "<?php echo site_url('project/index')?>";
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

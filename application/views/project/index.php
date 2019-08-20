@@ -89,6 +89,11 @@ $(document).ready(function() {
             }
              //"data": "",
         },
+		
+		dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
 });
 
 

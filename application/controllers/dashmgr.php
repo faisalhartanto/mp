@@ -16,8 +16,8 @@ class Dashmgr extends CI_Controller{
         $data['title']="Home";
 		$uname= $this->session->userdata('user');
 		 
-        $data['jlhnotif'] =$this->m_so->notif_count($options);
-		$jlhnotif= $data['jlhnotif'];
+        //$data['jlhnotif'] =$this->m_so->notif_count($options);
+		//$jlhnotif= $data['jlhnotif'];
 		/*$this->session->set_flashdata('msg', 
                 '<div class="alert alert-danger">
                     <p>Barang yang belum di Approve oleh Manager Sejumlah </p> <b>'.$jlhnotif.' </b><p>Unit Barang </p>

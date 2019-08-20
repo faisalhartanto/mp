@@ -7,7 +7,7 @@ class Project extends CI_Controller{
         $this->load->library(array('template','form_validation','pagination','upload'));
         $this->load->model(array('m_project'));
         
-        if(!$this->session->userdata('username')){
+        if(!$this->session->userdata('level')){
             redirect('web');
         }
     }
@@ -20,16 +20,16 @@ class Project extends CI_Controller{
 
     public function project_page()
      {
+		$level= $this->session->userdata('level');	
         $list = $this->m_project->get_datatables();
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $r) {
            
+		   
+			if ($level == 1){
 			$no++;
 			$row = array();
-			
-			
-			
             $row[] = $no;
             $row[] = $r->id_main_project;
 			$row[] = $r->no_doc_project;
@@ -37,7 +37,17 @@ class Project extends CI_Controller{
             $row[] = $r->tgl_input;
 			$row[] = '<a class="btn btn-sm btn-primary" href="project/edit/'."".$r->id_main_project."".'"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_project('."'".$r->id_main_project."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-           
+            } else {
+			$no++;
+			$row = array();
+            $row[] = $no;
+            $row[] = $r->id_main_project;
+			$row[] = $r->no_doc_project;
+            $row[] = $r->deskripsi_project;
+            $row[] = $r->tgl_input;	
+				
+				
+			}
            
  
             $data[] = $row;
@@ -64,6 +74,7 @@ class Project extends CI_Controller{
         if(empty($order_type)) $order_type='asc';
         
         //load data
+		$level= $this->session->userdata('level');
         $data['project']=$this->m_project->semua($this->limit,$offset,$order_column,$order_type)->result();
         $data['title']="Data project";
         
@@ -81,7 +92,13 @@ class Project extends CI_Controller{
             $data['message']="<div class='alert alert-success'>Data Berhasil disimpan</div>";
         else
             $data['message']='';
+			if ($level == 1){
             $this->template->display('project/index',$data);
+			} else if ($level == 2){
+			$this->template3->display('project/index2',$data);	
+			} else {
+			$this->template4->display('project/index2',$data);	
+			}
     }
     
     
