@@ -7,8 +7,8 @@ class M_so extends CI_Model{
 	var $primary2="site_id";
 	var $primary3="id_rtp";
 
-	var $column_order = array(null,'id_so','id_main_project','no_doc_project','deskripsi'); //set column field database for datatable orderable
-    var $column_search = array('id_so','id_main_project','no_doc_project','deskripsi');  //set column field database for datatable searchable 
+	var $column_order = array(null,'id_so','id_main_project','no_doc_project','deskripsi','nilai_project','status_job'); //set column field database for datatable orderable
+    var $column_search = array('id_so','id_main_project','no_doc_project','deskripsi','nilai_project','status_job');  //set column field database for datatable searchable 
     var $order = array('id_so' => 'asc'); // default order 
  
     public function __construct()

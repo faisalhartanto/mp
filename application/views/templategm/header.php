@@ -1,17 +1,4 @@
-<!--<img src="<?php //echo base_url('assets/img/3.jpg');?>" height="140px" width="100%">-->
-            <!-- Static navbar -->
-            <!-- <div class="navbar navbar-default">
-                <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php //echo site_url('dashboard');?>">comBAT MANagement System</a>
-                </div>
-                </div>
-            </div> -->
+
 
             <header class="topbar">
                 <nav class="navbar top-navbar navbar-expand-md navbar-light">
@@ -47,7 +34,7 @@
                                             <div class="dw-user-box">
                                                 <div class="u-img"><img src="<?php echo base_url('assets/admin-pro/images/users/icon3.jpg')?>" alt="user"></div>
                                                 <div class="u-text">
-                                                    <h4>Manager</h4>
+                                                    <h4>General Manager</h4>
                                                     <p class="text-muted">@barokahtim</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                             </div>
                                         </li>

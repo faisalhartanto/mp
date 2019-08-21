@@ -18,23 +18,24 @@ class Dashgm extends CI_Controller
     function index()
     {
         //$data['title']="Home";
-        $kategori = array('LN', 'BL', 'VC', 'MP', 'FT', 'IT', 'OE', 'LA', 'LI', 'IA');
-        $kategori2 = array('Balinusra', 'Jabar', 'Jabotabek dan Banten', 'Jateng dan DIY', 'Jatim', 'Kalimantan', 'Kantor Pusat', 'Puma', 'Sulawesi', 'Sumbagsel', 'Sumbagteng', 'Sumbagut');
+        $kategori = array('belum dikerjakan', 'On Progress', 'bast', 'closed');
+        
 
         for ($i = 0; $i <= count($kategori) - 1; $i++) {
 
             $row = $this->m_grafikchart->getkat1($kategori[$i])->result_array();
             $data[] = count($row);
 
-            $row2 = $this->m_grafikchart->getkat2($kategori[$i]);
+            $row2 = $this->m_grafikchart->getkat1($kategori[$i]);
             $sum = 0;
             foreach ($row2->result_array() as $row3) {
                 //$nominal[] = $row3['harga']; //can it be float also?
-                $sum += intval($row3['harga']) / 1000000;
+                $sum += intval($row3['nilai_project']) ;
             }
 
             $data2[] = $sum;
         }
+		/*
 
         for ($a = 0; $a <= count($kategori2) - 1; $a++) {
             $row3 = $this->m_grafikchart->getkat3($kategori2[$a], "LN")->result_array();
@@ -151,11 +152,12 @@ class Dashgm extends CI_Controller
 
 
         }
+		
+		*/
         //print_r( $data);
         // Update by imam 12 April 2019
         // End of update
-        $this->template4->display('v_grafikchartkat1', array('data' => $data, 'data2' => $data2, 'data3' => $data3, 'data4' => $data4, 'data5' => $data5
-        , 'data6' => $data6, 'data7' => $data7, 'data8' => $data8, 'data9' => $data9, 'data10' => $data10, 'data11' => $data11, 'data12' => $data12, 'data21' => $data21, 'data22' => $data22, 'data23' => $data23, 'data24' => $data24, 'data25' => $data25, 'data26' => $data26, 'data27' => $data27, 'data28' => $data28, 'data29' => $data29, 'data30' => $data30));
+        $this->template4->display('v_grafikchartkat1', array('data' => $data, 'data2' => $data2));
     }
 
 
