@@ -125,12 +125,12 @@ $("#id_main_project").click(function(){
     </div>
 	
 	<div class="form-group">
-        <label class="col-lg-2 control-label">Project Telkomsel?</label>
+        <label class="col-lg-2 control-label">Project Kemendikbud?</label>
         <div class="col-lg-3">
-            <select name="telkomsel" class="form-control alamat" id="telkomsel">
+            <select name="kemendikbud" class="form-control alamat" id="kemendikbud">
 				<option></option>
-				<option value="telkomsel">Telkomsel</option>
-				<option value="nontelkomsel">Non Telkomsel</option>
+				<option value="kemendikbud">Kemendikbud</option>
+				<option value="nonkemendikbud">Non Kemendikbud</option>
 			</select>
         </div>
     </div>

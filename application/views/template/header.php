@@ -48,7 +48,7 @@
                                                 <div class="u-img"><img src="<?php echo base_url('assets/admin-pro/images/users/icon3.jpg')?>" alt="user"></div>
                                                 <div class="u-text">
                                                     <h4>Administrator</h4>
-                                                    <p class="text-muted">@barokahtim</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                    <p class="text-muted">@barokahtim Nufaza</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                             </div>
                                         </li>
                                         <li role="separator" class="divider"></li>

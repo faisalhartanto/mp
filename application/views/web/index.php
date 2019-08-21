@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Monitoring Project Application</title>
+	<title>NUFAZA Monitoring Project Application</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -45,7 +45,7 @@
 			<div class="wrap-login100 p-t-30 p-b-50">
 				
 				<span class="login100-form-title p-b-41">
-					</br> Monitoring Project</br>Application
+					</br> NUFAZA Monitoring Project</br>Application
 				</span>
 				</br>
 				<center><h4>

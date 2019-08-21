@@ -125,12 +125,12 @@ $("#id_main_project").click(function(){
     </div>
 	
 	<div class="form-group">
-        <label class="col-lg-2 control-label">Project Telkomsel?</label>
+        <label class="col-lg-2 control-label">Project kemendikbud?</label>
         <div class="col-lg-3">
-            <select name="telkomsel" class="form-control alamat" id="telkomsel">
-				<option><?php echo $so['telkomsel'];?></option>
-				<option value="telkomsel">Telkomsel</option>
-				<option value="nontelkomsel">Non Telkomsel</option>
+            <select name="kemendikbud" class="form-control alamat" id="kemendikbud">
+				<option><?php echo $so['kemendikbud'];?></option>
+				<option value="kemendikbud">kemendikbud</option>
+				<option value="nonkemendikbud">Non kemendikbud</option>
 			</select>
         </div>
     </div>

@@ -55,7 +55,7 @@
               </div>
 
               <footer class="footer">
-                  © 2019 Barokah Tim
+                  © 2019 Barokah Tim Nufaza
               </footer>
 
               <!-- Modal -->

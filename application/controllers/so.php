@@ -36,7 +36,7 @@ class So extends CI_Controller{
 			$row[] = $r->status_job;
 			/*
 			$row[] = $r->rutin;
-			$row[] = $r->telkomsel;
+			$row[] = $r->kemendikbud;
 			$row[] = $r->po_nonpo;
 			$row[] = $r->status_po;
 			*/
@@ -75,6 +75,43 @@ class So extends CI_Controller{
 
           
      }
+	 
+	  public function so_page_tanggal()
+     {
+		 
+		$level= $this->session->userdata('level'); 
+        $list = $this->m_so->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $r) {
+           
+			
+			$no++;
+			$row = array();
+            $row[] = $no;
+			$row[] = $r->id_so;
+			$row[] = $r->deskripsi;
+            $row[] = $r->tgl_belumdikerjakan;
+            $row[] = $r->tgl_ongoing;
+            $row[] = $r->tgl_bast;
+            $row[] = $r->tgl_closed;
+			
+			
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->m_so->count_all(),
+                        "recordsFiltered" => $this->m_so->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+
+          
+     }
+    
     
 	
 	public function ajax_delete($id)
@@ -101,7 +138,7 @@ class So extends CI_Controller{
 		$this->m_so->updateflag($id_so,$infoflag);
 		
     }
-    redirect('brg2/index_approve', 'refresh');
+    redirect('so/index_approve', 'refresh');
 }
 
     function index($offset=0,$order_column='id_so',$order_type='asc'){
@@ -136,6 +173,41 @@ class So extends CI_Controller{
 			}
 			else {
 			$this->template4->display('so/index2',$data);	
+			}
+    }
+	
+	function index_tanggal($offset=0,$order_column='id_so',$order_type='asc'){
+        if(empty($offset)) $offset=0;
+        if(empty($order_column)) $order_column='id_so';
+        if(empty($order_type)) $order_type='asc';
+        
+        //load data
+		$level= $this->session->userdata('level'); 
+        $data['so']=$this->m_so->semua($this->limit,$offset,$order_column,$order_type)->result();
+        $data['title']="Data soalasi";
+        
+        $config['base_url']=site_url('so/index/');
+        $config['total_rows']=$this->m_so->jumlah();
+        $config['per_page']=$this->limit;
+        $config['uri_segment']=3;
+        $this->pagination->initialize($config);
+        $data['pagination']=$this->pagination->create_links();
+        
+        
+        if($this->uri->segment(3)=="delete_success")
+            $data['message']="<div class='alert alert-success'>Data berhasil dihapus</div>";
+        else if($this->uri->segment(3)=="add_success")
+            $data['message']="<div class='alert alert-success'>Data Berhasil disimpan</div>";
+        else
+            $data['message']='';
+			if ($level == 1){
+            $this->template->display('so/index_tanggal',$data);
+			}
+			else if  ($level == 2){
+			$this->template3->display('so/index_tanggal',$data);	
+			}
+			else {
+			$this->template4->display('so/index_tanggal',$data);	
 			}
     }
     
@@ -187,7 +259,7 @@ class So extends CI_Controller{
 					'status_job'=>$this->input->post('status_job'),
 					'tgl_belumdikerjakan'=>$this->input->post('tgl_input'),
 					'rutin'=>$this->input->post('rutin'),
-					'telkomsel'=>$this->input->post('telkomsel'),
+					'kemendikbud'=>$this->input->post('kemendikbud'),
 					'po_nonpo'=>$this->input->post('po_nonpo'),
 					'status_po'=>$this->input->post('status_po'),
                 );
@@ -217,7 +289,7 @@ class So extends CI_Controller{
 					'no_po_kesepakatan'=>$this->input->post('no_po_kesepakatan'),
 					'status_job'=>$this->input->post('status_job'),
 					'rutin'=>$this->input->post('rutin'),
-					'telkomsel'=>$this->input->post('telkomsel'),
+					'kemendikbud'=>$this->input->post('kemendikbud'),
 					'po_nonpo'=>$this->input->post('po_nonpo'),
 					'status_po'=>$this->input->post('status_po'),
                 );
