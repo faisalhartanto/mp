@@ -373,7 +373,7 @@ class So extends CI_Controller{
             $this->template3->display('so/index_approve',$data);
 			}
 			else {
-			 $this->template3->display('so/index_approve2',$data);	
+			 $this->template->display('so/index_approve2',$data);	
 			}
     }
     

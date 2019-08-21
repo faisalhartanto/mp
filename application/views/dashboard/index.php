@@ -29,25 +29,25 @@
 </style>
 <div class="panel panel-default">
     <div class="panel-heading">
-        Administrator
+        Admin
     </div>
     <div class="panel-body">
         <div class="container">
-            <!--
+            
 			<ul class="glyphicons">
                 <li>
                   <span class="glyphicon glyphicon-user"></span>
-                  <a href="<?php echo site_url('proker');?>">Anggota</a>
+                  <a href="<?php echo site_url('so/index_tanggal');?>">Tanggal Progress SO</a>
                 </li>
                 
                 <li>
                   <span class="glyphicon glyphicon-book"></span>
-                  <a href="<?php echo site_url('proker');?>">Buku</a>
+                  <a href="<?php echo site_url('so');?>">List SO</a>
                 </li>
                 
                 
             </ul>
-			-->
+			
         </div>
     </div>
 </div>

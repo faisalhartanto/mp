@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller{
     function index(){
         $data['title']="Home";
         
-        $this->template->display('dashboard/index',$data);
+        $this->template->display('so/index_tanggal',$data);
     }
     
     function petugas(){

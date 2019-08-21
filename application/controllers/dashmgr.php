@@ -14,6 +14,7 @@ class Dashmgr extends CI_Controller{
     
     function index(){
         $data['title']="Home";
+		$data['message']="Home";
 		$uname= $this->session->userdata('user');
 		 
         //$data['jlhnotif'] =$this->m_so->notif_count($options);
@@ -22,7 +23,7 @@ class Dashmgr extends CI_Controller{
                 '<div class="alert alert-danger">
                     <p>Barang yang belum di Approve oleh Manager Sejumlah </p> <b>'.$jlhnotif.' </b><p>Unit Barang </p>
                 </div>');*/   
-        $this->template3->display('dashmgr/index',$data);
+        $this->template3->display('so/index_tanggal',$data);
 		
     }
     

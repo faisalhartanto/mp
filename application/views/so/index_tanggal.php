@@ -33,7 +33,7 @@
 				<div class="card-body">
              
 
-                <?php echo $message;?>
+               
                 <div class="table-responsive">
 
 				<table id="table" class="table table-bordered table-striped table-hover">
